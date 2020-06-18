@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <link rel="stylesheet" type="text/css" href="./styles/sll.css">
+</head>
+<body>
+
+  <!-- load the d3.js library -->     
+  <script src="./libs/d3.min.js" charset="utf-8"></script>
+  <script src="./libs/d3-hierarchy.min.js" charset="utf-8"></script>
+  <script src="./scripts/singly_linked_list.js"></script>
+  <script src="./scripts/visualize_sll.js"></script>
+  <script>
+    
+    var singly_linked_list = new SinglyLinkedList();
+    update(singly_linked_list);
+
+    /*singly_linked_list.insert(3);
+    singly_linked_list.insert(5);
+    singly_linked_list.insert(7);
+    singly_linked_list.insert("hello");
+    console.log(singly_linked_list.head);*/
+
+    function buttonInsert(value) {
+      singly_linked_list.insert(document.getElementById("input").value);
+      console.log("length after insert: " + singly_linked_list._length);
+      update(singly_linked_list);
+    }
+
+    function buttonRemove(value) {
+      singly_linked_list.removeElement(document.getElementById("input").value);
+      console.log("length after remove: " + singly_linked_list._length);
+      update(singly_linked_list);
+    }
+    
+    function buttonClear() {
+      singly_linked_list = new SinglyLinkedList();
+      console.log("length after clear: " + singly_linked_list._length);
+      update(singly_linked_list);
+    }
+
+  </script>
+  
+  <div id="controls">
+    <input type="text" id="input">
+    <button type="button" id="insert" onclick="buttonInsert()">Insert</button>
+    <button type="button" id="remove" onclick="buttonRemove()">Remove Element</button>
+    <button type="button" id="clear" onclick="buttonClear()">Clear List</button>
+  </div>
+
+  <div id="svgContainer">
+    <svg id="svg">
+    </svg>
+  </div>
+</body>
